@@ -7,7 +7,7 @@ import { IoIosArrowForward } from 'react-icons/io';
 
 import './style.css';
 
-const Calendar = ({allDays, days, month, year, monthList}) => (
+const Calendar = ({allDays, days, month, year, monthList, yearTable}) => (
     <div className="tail-datetime-calendar" >
         <div className="calendar-navi" >
             <span className="calendar-button button-prev" ><IoIosArrowBack/></span>
@@ -17,6 +17,7 @@ const Calendar = ({allDays, days, month, year, monthList}) => (
         </div>
         <div className="calendar-date ">
             {monthList()}
+            {yearTable(year())}
         </div>
         <div className="calendar-date" >
             <table className="calendar-day" >
