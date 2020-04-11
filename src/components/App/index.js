@@ -26,7 +26,7 @@ const firstDayOfMonth = () => (
 // zone de vide pour le début du mois
 const blanks = [];
 for (let i = 0; i < firstDayOfMonth(); i++) {
-  blanks.push(<td>{""}</td>);
+  blanks.push(<td className="calendar-day empty" >{""}</td>);
 };
 
 // jour actuel
@@ -36,7 +36,7 @@ const daysInMonth = [];
 for(let day = 1; day <= state.dateObject.daysInMonth(); day++){
   let today = day == currentDay() ? "today" : ""
   daysInMonth.push(
-  <td key={day} className={today}>{day}</td>
+  <td key={day} className={`calendar-day ${today}`}>{day}</td>
   );
 };
 
@@ -90,7 +90,7 @@ const monthList = () => {
   let list = rows.map((month) => (<tr>{month}</tr>));
 
   return (
-    <table>
+    <table className="calendar-month" >
         <thead>
           <tr>
             <th colSpan="4">Choisir un mois</th>
@@ -109,9 +109,6 @@ const App = () => (
   <div className="app">
     {console.log(monthList())}
     <Calendar allDays={allDaysInMonth} days={weekDayName} month={month} year={year} monthList={monthList} />
-    <div className="calendar-date">
-   
-</div>
   </div>
 
 );
