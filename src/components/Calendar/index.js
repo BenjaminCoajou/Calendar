@@ -7,13 +7,19 @@ import { IoIosArrowForward } from 'react-icons/io';
 
 import './style.css';
 
-const Calendar = ({allDays, days}) => (
+const Calendar = ({allDays, days, month, year, monthList}) => (
     <div>
         <div>
             <span><IoIosArrowBack/></span>
-            <span> avril </span>
-            <span> 2020 </span>
+            <span> {month()} </span>
+            <span> {year()} </span>
             <span><IoIosArrowForward/></span>
+        </div>
+        <div>
+            {monthList()}
+        </div>
+        <div>
+            
         </div>
         <div>
             <table>
