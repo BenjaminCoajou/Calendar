@@ -38,5 +38,14 @@ const Calendar = ({allDays, days, month, year, monthList, yearTable}) => (
     </div>
 );
 
+Calendar.propTypes = {
+    allDays: Proptypes.array.isRequired,
+    days: Proptypes.array.isRequired,
+    month: Proptypes.func.isRequired,
+    year: Proptypes.func.isRequired,
+    monthList: Proptypes.func.isRequired,
+    yearTable: Proptypes.func.isRequired,
+};
+
 
 export default Calendar;

@@ -26,7 +26,7 @@ const firstDayOfMonth = () => (
 // zone de vide pour le début du mois
 const blanks = [];
 for (let i = 0; i < firstDayOfMonth(); i++) {
-  blanks.push(<td className="calendar-day empty" >{""}</td>);
+  blanks.push(<td  className="calendar-day empty" >{""}</td>);
 };
 
 // jour actuel
@@ -36,7 +36,7 @@ const daysInMonth = [];
 for(let day = 1; day <= state.dateObject.daysInMonth(); day++){
   let today = day == currentDay() ? "today" : ""
   daysInMonth.push(
-  <td key={day} className={`calendar-day ${today}`}>{day}</td>
+  <td key={day} className={`calendar-day ${today}`}>{day}</td>,
   );
 };
 
@@ -175,7 +175,7 @@ const yearTable = (currentYear) => {
 
 const App = () => (
   <div className="app">
-    {console.log(state.dateObject)}
+    {console.log(allDaysInMonth)}
     <Calendar allDays={allDaysInMonth} days={weekDayName} month={month} year={year} monthList={monthList} yearTable={yearTable}/>
   </div>
 
