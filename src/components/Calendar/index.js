@@ -2,10 +2,6 @@ import React from 'react';
 import Proptypes from 'prop-types';
 import moment from 'moment';
 
-
-import { IoIosArrowBack } from 'react-icons/io';
-import { IoIosArrowForward } from 'react-icons/io';
-
 import './style.css';
 
 const Calendar = ({dateObject, allmonths, monthIsDisplayed,showMonth,yearIsDisplayed, showYear, handleSelectMonth, handleSelectYear}) => {
@@ -69,7 +65,7 @@ const Calendar = ({dateObject, allmonths, monthIsDisplayed,showMonth,yearIsDispl
             <td key={data}
             className="calendar-month"
             >
-            <span onClick={() => {handleSelectMonth(data)}}>{data}</span>
+            <span onClick={() => {handleSelectMonth(allmonths.indexOf(data))}}>{data}</span>
             </td>
         );
         });
@@ -169,11 +165,10 @@ const Calendar = ({dateObject, allmonths, monthIsDisplayed,showMonth,yearIsDispl
     
     return(
     <div className="tail-datetime-calendar" >
+        {console.log('test')}
         <div className="calendar-navi" >
-            <span className="calendar-button button-prev" ><IoIosArrowBack/></span>
             <span className="calendar-label" onClick={showMonth} > {month()} </span>
             <span className="calendar-label" onClick={showYear}> {year()} </span>
-            <span className="calendar-button button-next" ><IoIosArrowForward/></span>
         </div>
         <div className="calendar-date ">
             {monthIsDisplayed && monthList()}
