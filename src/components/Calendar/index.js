@@ -8,7 +8,7 @@ import { IoIosArrowForward } from 'react-icons/io';
 
 import './style.css';
 
-const Calendar = ({dateObject, allmonths}) => {
+const Calendar = ({dateObject, allmonths, monthIsDisplayed,showMonth,yearIsDisplayed, showYear, handleSelectMonth}) => {
     moment.locale('fr');
     
     // nom des jours de la semaine
@@ -69,7 +69,7 @@ const Calendar = ({dateObject, allmonths}) => {
             <td key={data}
             className="calendar-month"
             >
-            <span>{data}</span>
+            <span onClick={() => {handleSelectMonth(data)}}>{data}</span>
             </td>
         );
         });
@@ -171,13 +171,13 @@ const Calendar = ({dateObject, allmonths}) => {
     <div className="tail-datetime-calendar" >
         <div className="calendar-navi" >
             <span className="calendar-button button-prev" ><IoIosArrowBack/></span>
-            <span className="calendar-label" > {month()} </span>
-            <span className="calendar-label"> {year()} </span>
+            <span className="calendar-label" onClick={showMonth} > {month()} </span>
+            <span className="calendar-label" onClick={showYear}> {year()} </span>
             <span className="calendar-button button-next" ><IoIosArrowForward/></span>
         </div>
         <div className="calendar-date ">
-            {monthList()}
-            {yearTable(year())}
+            {monthIsDisplayed && monthList()}
+            {yearIsDisplayed && yearTable(year())}
         </div>
         <div className="calendar-date" >
             <table className="calendar-day" >
@@ -201,6 +201,11 @@ const Calendar = ({dateObject, allmonths}) => {
 Calendar.propTypes = {
     dateObject: Proptypes.object.isRequired,
     allmonths: Proptypes.array.isRequired,
+    monthIsDisplayed: Proptypes.bool.isRequired,
+    showMonth: Proptypes.func.isRequired,
+    yearIsDisplayed: Proptypes.bool.isRequired,
+    showYear: Proptypes.func.isRequired,
+    handleSelectMonth: Proptypes.func.isRequired,
 };
 
 
