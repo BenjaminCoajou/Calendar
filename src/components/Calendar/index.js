@@ -8,7 +8,7 @@ import { IoIosArrowForward } from 'react-icons/io';
 
 import './style.css';
 
-const Calendar = ({dateObject, allmonths, monthIsDisplayed,showMonth,yearIsDisplayed, showYear, handleSelectMonth}) => {
+const Calendar = ({dateObject, allmonths, monthIsDisplayed,showMonth,yearIsDisplayed, showYear, handleSelectMonth, handleSelectYear}) => {
     moment.locale('fr');
     
     // nom des jours de la semaine
@@ -134,7 +134,7 @@ const Calendar = ({dateObject, allmonths, monthIsDisplayed,showMonth,yearIsDispl
             key={data}
             className="calendar-month"
             >
-            <span>{data}</span>
+            <span onClick={() => {handleSelectYear(data)}} >{data}</span>
             </td>
         );
         });
@@ -206,6 +206,7 @@ Calendar.propTypes = {
     yearIsDisplayed: Proptypes.bool.isRequired,
     showYear: Proptypes.func.isRequired,
     handleSelectMonth: Proptypes.func.isRequired,
+    handleSelectYear: Proptypes.func.isRequired,
 };
 
 

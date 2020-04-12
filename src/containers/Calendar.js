@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Calendar from '../components/Calendar';
 
-import { displayMonth, displayYear, selectMonth } from '../actions/calendar';
+import { displayMonth, displayYear, selectMonth, selectYear } from '../actions/calendar';
 
 
 
@@ -21,6 +21,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     handleSelectMonth: (month) => {
         dispatch(selectMonth(month))
+    },
+    handleSelectYear: (year) => {
+        dispatch(selectYear(year))
     },
 });
 
