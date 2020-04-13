@@ -2,57 +2,13 @@ import React from 'react';
 import Proptypes from 'prop-types';
 import moment from 'moment';
 
+import Days from '../../containers/Days'
 import './style.css';
 
 const Calendar = ({dateObject, allmonths, monthIsDisplayed,showMonth,yearIsDisplayed, showYear, handleSelectMonth, handleSelectYear}) => {
     moment.locale('fr');
     
-    // nom des jours de la semaine
-    const weekDayName = (
-       moment.weekdays());
-
-    // premier jour du mois
-    const firstDayOfMonth = () => (
-        moment(dateObject).startOf('month').format('d')
-    );
-
-    // zone de vide pour le début du mois
-    const blanks = [];
-    for (let i = 0; i < firstDayOfMonth(); i++) {
-        blanks.push(<td  className="calendar-day empty" >{""}</td>);
-    };
     
-    // jour actuel
-    const currentDay = () => (dateObject.format('D'));
-    // nombre de jours dans le mois actuel
-    const daysInMonth = [];
-    for(let day = 1; day <= dateObject.daysInMonth(); day++){
-        let today = day == currentDay() ? "today" : ""
-        daysInMonth.push(
-        <td key={day} className={`calendar-day ${today}`}>{day}</td>,
-        );
-    };
-    
-    // structure du calendrier (semaine)
-    const totalSlots = [...blanks, ...daysInMonth];
-    let rows = [];
-    let cells = [];
-    totalSlots.forEach((row, i) => {
-        if(i %7 !== 0) {
-        cells.push(row);
-        } else {
-        rows.push(cells);
-        cells = [];
-        cells.push(row);
-        }
-        if ( i === totalSlots.length -1) {
-        rows.push(cells);
-        }
-    });
-    
-    const allDaysInMonth = rows.map((day) => (
-        <tr>{day}</tr> // possible probleme de key
-    ));
     
     // mois ----------------------------------------------
     const month = () => (dateObject.format("MMMM"));
@@ -95,9 +51,7 @@ const Calendar = ({dateObject, allmonths, monthIsDisplayed,showMonth,yearIsDispl
             <tbody>{list}</tbody>
             </table>
         );
-    };
-    
-    // changer le mois
+    };    
     
     // année ----------------------------------------------
     const year = () => (dateObject.format("Y"));
@@ -117,12 +71,12 @@ const Calendar = ({dateObject, allmonths, monthIsDisplayed,showMonth,yearIsDispl
     // table des 9 prochaines années
     const yearTable = (currentYear) => {
         let months = [];
-        let nextten = moment()
+        let nextEight = moment()
         .set("year", currentYear)
         .add("year", 8)
         .format("Y");
     
-        let tenyear = getDates(currentYear, nextten);
+        let tenyear = getDates(currentYear, nextEight);
     
         tenyear.map(data => {
         months.push(
@@ -175,20 +129,7 @@ const Calendar = ({dateObject, allmonths, monthIsDisplayed,showMonth,yearIsDispl
             {yearIsDisplayed && yearTable(year())}
         </div>
         <div className="calendar-date" >
-            <table className="calendar-day" >
-                <thead>
-                    <tr>  
-                        {
-                            weekDayName.map(day =>(
-                                <th key={day} className="week-day" > {day} </th>
-                            ))                        
-                        }         
-                    </tr>
-                </thead>
-                <tbody>
-                    {allDaysInMonth}
-                </tbody>
-            </table>
+            <Days />
         </div>
     </div>
 )};
