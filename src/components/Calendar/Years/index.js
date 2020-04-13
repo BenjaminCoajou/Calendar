@@ -34,7 +34,7 @@ const Years = ({  handleSelectYear }) => {
         months.push(
             <td
             key={data}
-            className="calendar-month"
+            className="calendar-year"
             >
             <span onClick={() => {handleSelectYear(data)}} >{data}</span>
             </td>
@@ -58,7 +58,7 @@ const Years = ({  handleSelectYear }) => {
         });
     
         return (
-        <table className="calendar-month">
+        <table className="calendar-years">
             <thead>
             <tr>
                 <th colSpan="4">Choisir une année</th>

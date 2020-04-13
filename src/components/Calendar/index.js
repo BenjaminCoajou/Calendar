@@ -8,6 +8,7 @@ import Years from '../../containers/Years';
 import './style.css';
 
 const Calendar = ({ dateObject, monthIsDisplayed, showMonth, yearIsDisplayed, showYear }) => {
+    
     moment.locale('fr');
 
     // mois
@@ -66,17 +67,14 @@ const Calendar = ({ dateObject, monthIsDisplayed, showMonth, yearIsDisplayed, sh
 
     return (
         <div className="tail-datetime-calendar" >
-            {console.log('test')}
             <div className="calendar-navi" >
                 <span className="calendar-label" onClick={showMonth} > {month()} </span>
                 <span className="calendar-label" onClick={showYear}> {year()} </span>
-            </div>
-            <div className="calendar-date ">
+            </div>            
                 {monthIsDisplayed && <Months />}
                 {yearIsDisplayed && <Years />}
-            </div>
             <div className="calendar-date" >
-                <table className="calendar-day" >
+                <table className="calendar-days" >
                     <thead>
                         <tr>
                             {

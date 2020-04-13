@@ -1,0 +1,16 @@
+.calendar-months {
+  width: 100%;
+  padding: 5px;
+  line-height: 25px;
+}
+
+.calendar-month {
+  width: 33%;
+  text-transform: uppercase;
+}
+
+
+.calendar-month:hover {
+  color: #cd283c;
+  font-weight: bold;
+}

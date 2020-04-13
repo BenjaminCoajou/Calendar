@@ -1,0 +1,10 @@
+.calendar-years {
+    width: 100%;
+    padding: 5px;
+    line-height: 25px;
+  }
+
+  .calendar-year:hover {
+    color: #cd283c;
+    font-weight: bold;
+  }

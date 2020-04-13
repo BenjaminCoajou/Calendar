@@ -11,9 +11,8 @@ const Months = ({allmonths, handleSelectMonth}) => {
         allmonths.map(data => {
         monthsList.push(
             <td key={data}
-            className="calendar-month"
-            >
-            <span onClick={() => {handleSelectMonth(allmonths.indexOf(data))}}>{data}</span>
+            className="calendar-month"            
+            onClick={() => {handleSelectMonth(allmonths.indexOf(data))}}>{data}
             </td>
         );
         });
@@ -34,7 +33,7 @@ const Months = ({allmonths, handleSelectMonth}) => {
         let list = rows.map((month) => (<tr>{month}</tr>));
     
         return (
-        <table className="calendar-month" >
+        <table className="calendar-months" >
             <thead>
                 <tr>
                 <th colSpan="4">Choisir un mois</th>
@@ -46,7 +45,7 @@ const Months = ({allmonths, handleSelectMonth}) => {
     };    
 
     return(
-    <div>{monthList()}</div>
+    <div className="calendar-date">{monthList()}</div>
     );
 };
 
