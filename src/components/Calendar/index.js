@@ -7,7 +7,7 @@ import Years from '../../containers/Years';
 
 import './style.css';
 
-const Calendar = ({ dateObject, monthIsDisplayed, showMonth, yearIsDisplayed, showYear, handleDayClick }) => {
+const Calendar = ({ dateObject, monthIsDisplayed, showMonth, yearIsDisplayed, showYear, handleDayClick, event, eventIsDisplayed,showEvent }) => {
     
     moment.locale('fr');
 
@@ -39,9 +39,12 @@ const Calendar = ({ dateObject, monthIsDisplayed, showMonth, yearIsDisplayed, sh
     const daysInMonth = [];
     for (let day = 1; day <= dateObject.daysInMonth(); day++) {
         let today = day == currentDay() ? "today" : "";
-        let selectedDay = moment(`${dateObject.format('MM')}-${day}-${year()}`).format('DD-MM-YY');
+        let selectedDay = moment(`${dateObject.format('MM')}-${day}-${year()}`).dayOfYear();
+        let allEvent = event.map((evt) => (evt.date));
+        let findEvent = allEvent.find(evt => evt == selectedDay)
+        let nextEvent = () => (selectedDay == findEvent ? "ok" : "");
         daysInMonth.push(
-            <td key={day} className={`calendar-day ${today}`} onClick={() => {handleDayClick(selectedDay)}}>{day}</td>,
+        <td key={day} className={`calendar-day ${today}`} onClick={() => {handleDayClick(selectedDay), showEvent()}}><span>{nextEvent()}</span>{day}</td>,
         );
     };
 
@@ -67,7 +70,9 @@ const Calendar = ({ dateObject, monthIsDisplayed, showMonth, yearIsDisplayed, sh
     ));
 
     return (
+        <div className="container">
         <div className="tail-datetime-calendar" >
+            {console.log('allEvent')}
             <div className="calendar-navi" >
                 <span className="calendar-label" onClick={showMonth} > {month()} </span>
                 <span className="calendar-label" onClick={showYear}> {year()} </span>
@@ -90,6 +95,8 @@ const Calendar = ({ dateObject, monthIsDisplayed, showMonth, yearIsDisplayed, sh
                     </tbody>
                 </table>
             </div>
+        </div>
+                        <div> {eventIsDisplayed && event[1].name}</div>
         </div>
     )
 };
