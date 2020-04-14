@@ -1,13 +1,14 @@
 import React from 'react';
 import Proptypes from 'prop-types';
 import moment from 'moment';
+import { MdEvent } from "react-icons/md";
 
 import Months from '../../containers/Months';
 import Years from '../../containers/Years';
 
 import './style.css';
 
-const Calendar = ({ dateObject, monthIsDisplayed, showMonth, yearIsDisplayed, showYear, handleDayClick, event, eventIsDisplayed,selectEvent, eventInfos }) => {
+const Calendar = ({ dateObject, monthIsDisplayed, showMonth, yearIsDisplayed, showYear, handleDayClick, event, selectEvent, eventInfos }) => {
     
     moment.locale('fr');
 
@@ -43,7 +44,7 @@ const Calendar = ({ dateObject, monthIsDisplayed, showMonth, yearIsDisplayed, sh
         let allEvent = event.map((evt) => (evt.date));
         let findEvent = allEvent.find(evt => evt == selectedDay);
         let eventInfos = event.find(evt => evt.date == selectedDay);
-        let nextEvent = () => (selectedDay == findEvent ? "ok" : "");
+        let nextEvent = () => (selectedDay == findEvent ? <MdEvent/> : "");
         daysInMonth.push(
         <td key={day} className={`calendar-day ${today}`} onClick={() => {handleDayClick(selectedDay), selectEvent(eventInfos)}}><span>{nextEvent()}</span>{day}</td>,
         );

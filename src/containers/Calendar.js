@@ -10,7 +10,6 @@ const mapStateToProps = ({calendar}) => ({
     monthIsDisplayed : calendar.monthIsDisplayed, 
     yearIsDisplayed: calendar.yearIsDisplayed,    
     event: calendar.event,
-    eventIsDisplayed: calendar.eventIsDisplayed,
     eventInfos: calendar.eventInfos,
 });
 
