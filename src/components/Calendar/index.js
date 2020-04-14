@@ -7,7 +7,7 @@ import Years from '../../containers/Years';
 
 import './style.css';
 
-const Calendar = ({ dateObject, monthIsDisplayed, showMonth, yearIsDisplayed, showYear }) => {
+const Calendar = ({ dateObject, monthIsDisplayed, showMonth, yearIsDisplayed, showYear, handleDayClick }) => {
     
     moment.locale('fr');
 
@@ -38,9 +38,10 @@ const Calendar = ({ dateObject, monthIsDisplayed, showMonth, yearIsDisplayed, sh
     // nombre de jours dans le mois actuel
     const daysInMonth = [];
     for (let day = 1; day <= dateObject.daysInMonth(); day++) {
-        let today = day == currentDay() ? "today" : ""
+        let today = day == currentDay() ? "today" : "";
+        let selectedDay = moment(`${dateObject.format('MM')}-${day}-${year()}`).format('DD-MM-YY');
         daysInMonth.push(
-            <td key={day} className={`calendar-day ${today}`}>{day}</td>,
+            <td key={day} className={`calendar-day ${today}`} onClick={() => {handleDayClick(selectedDay)}}>{day}</td>,
         );
     };
 
