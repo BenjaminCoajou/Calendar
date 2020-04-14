@@ -23,6 +23,7 @@ export const selectDay = (payload) => ({
     type: SELECT_DAY,
     payload,
 });
-export const displayEvent = () => ({
+export const displayEvent = (payload) => ({
     type: DISPLAY_EVENT,
+    payload
 })

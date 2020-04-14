@@ -10,6 +10,7 @@ const initialState = {
     monthIsDisplayed: false,
     yearIsDisplayed: false,
     eventIsDisplayed: false,
+    eventInfos: '',
     event: [
         {
             date: '106',
@@ -60,6 +61,7 @@ export default (state = initialState, action = {}) => {
                 return {
                     ...state,
                     eventIsDisplayed: !state.eventIsDisplayed,
+                    eventInfos: action.payload === undefined ? "" :action.payload.name,
                 }
         default:
             return state;

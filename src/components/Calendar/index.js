@@ -7,7 +7,7 @@ import Years from '../../containers/Years';
 
 import './style.css';
 
-const Calendar = ({ dateObject, monthIsDisplayed, showMonth, yearIsDisplayed, showYear, handleDayClick, event, eventIsDisplayed,showEvent }) => {
+const Calendar = ({ dateObject, monthIsDisplayed, showMonth, yearIsDisplayed, showYear, handleDayClick, event, eventIsDisplayed,selectEvent, eventInfos }) => {
     
     moment.locale('fr');
 
@@ -41,13 +41,13 @@ const Calendar = ({ dateObject, monthIsDisplayed, showMonth, yearIsDisplayed, sh
         let today = day == currentDay() ? "today" : "";
         let selectedDay = moment(`${dateObject.format('MM')}-${day}-${year()}`).dayOfYear();
         let allEvent = event.map((evt) => (evt.date));
-        let findEvent = allEvent.find(evt => evt == selectedDay)
+        let findEvent = allEvent.find(evt => evt == selectedDay);
+        let eventInfos = event.find(evt => evt.date == selectedDay);
         let nextEvent = () => (selectedDay == findEvent ? "ok" : "");
         daysInMonth.push(
-        <td key={day} className={`calendar-day ${today}`} onClick={() => {handleDayClick(selectedDay), showEvent()}}><span>{nextEvent()}</span>{day}</td>,
+        <td key={day} className={`calendar-day ${today}`} onClick={() => {handleDayClick(selectedDay), selectEvent(eventInfos)}}><span>{nextEvent()}</span>{day}</td>,
         );
     };
-
     // structure du calendrier (semaine)
     const totalSlots = [...blanks, ...daysInMonth];
     let rows = [];
@@ -72,7 +72,7 @@ const Calendar = ({ dateObject, monthIsDisplayed, showMonth, yearIsDisplayed, sh
     return (
         <div className="container">
         <div className="tail-datetime-calendar" >
-            {console.log('allEvent')}
+            {console.log('')}
             <div className="calendar-navi" >
                 <span className="calendar-label" onClick={showMonth} > {month()} </span>
                 <span className="calendar-label" onClick={showYear}> {year()} </span>
@@ -96,7 +96,7 @@ const Calendar = ({ dateObject, monthIsDisplayed, showMonth, yearIsDisplayed, sh
                 </table>
             </div>
         </div>
-                        <div> {eventIsDisplayed && event[1].name}</div>
+                        <div> {eventInfos ? eventInfos : ""}</div>
         </div>
     )
 };

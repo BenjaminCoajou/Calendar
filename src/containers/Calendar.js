@@ -11,6 +11,7 @@ const mapStateToProps = ({calendar}) => ({
     yearIsDisplayed: calendar.yearIsDisplayed,    
     event: calendar.event,
     eventIsDisplayed: calendar.eventIsDisplayed,
+    eventInfos: calendar.eventInfos,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -23,8 +24,8 @@ const mapDispatchToProps = (dispatch) => ({
     handleDayClick: (month, year, day) => {
         dispatch(selectDay(month, year, day))
     },
-    showEvent: () => {
-        dispatch(displayEvent())
+    selectEvent: (number) => {
+        dispatch(displayEvent(number))
     },
 });
 
